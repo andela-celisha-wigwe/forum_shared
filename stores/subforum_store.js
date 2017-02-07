@@ -4,7 +4,6 @@ import SubforumAPI from '../utils/subforum'
 import Reflux from 'reflux'
 
 import SubforumAction from '../actions/subforum_action'
-import AlertAction from '../actions/alert_action'
 import Manager from '../../utils/manager'
 
 export default Reflux.createStore({
@@ -22,7 +21,7 @@ export default Reflux.createStore({
   	.then((subforums) => {
   		this.trigger(subforums)
   	})
-  	.catch(this.showError)
+  	.catch(Manager.showError)
   },
 
   onViewSubforum (subforumId) {
@@ -30,7 +29,7 @@ export default Reflux.createStore({
   	.then((subforum) => {
   		this.trigger(subforum)
   	})
-  	.catch(this.showError)
+  	.catch(Manager.showError)
   },
 
   onUpdateSubforum (subforumId, subforumUpdate) {
@@ -38,7 +37,7 @@ export default Reflux.createStore({
   	.then((subforum) => {
   		this.trigger(subforum)
   	})
-  	.catch(this.showError)
+  	.catch(Manager.showError)
   },
 
   onCreateSubforum (newSubforum) {
@@ -46,7 +45,7 @@ export default Reflux.createStore({
   	.then((subforum) => {
   		this.trigger(subforum)
   	})
-  	.catch(this.showError)
+  	.catch(Manager.showError)
   },
 
   onDeleteSubforum (subforumId) {
@@ -54,11 +53,6 @@ export default Reflux.createStore({
   	.then(() => {
   		this.trigger(true)
   	})
-  	.catch(this.showError)
-  },
-
-  showError (err) {
-    Manager.showError()
-  	// AlertAction.alertError(`There was a problem. ${err}`)
+  	.catch(Manager.showError)
   }
 })

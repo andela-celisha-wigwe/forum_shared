@@ -4,7 +4,6 @@ import Reflux from 'reflux'
 import MessageAPI from '../utils/message'
 
 import MessageAction from '../actions/message_action'
-import AlertAction from '../actions/alert_action'
 
 import Manager from '../../utils/manager'
 
@@ -22,7 +21,7 @@ export default Reflux.createStore({
 		.then((messages) => {
 			this.trigger(messages)
 		})
-		.catch(this.showError)
+		.catch(Manager.showError)
 	},
 
 	onViewMessage (post, messageId) {
@@ -30,7 +29,7 @@ export default Reflux.createStore({
 		.then((message) => {
 			this.trigger(message)
 		})
-		.catch(this.showError)
+		.catch(Manager.showError)
 	},
 
 	onCreateMessage (post, newMessage) {
@@ -38,7 +37,7 @@ export default Reflux.createStore({
 		.then((message) => {
 			this.trigger(message)
 		})
-		.catch(this.showError)
+		.catch(Manager.showError)
 	},
 
 	onUpdateMessage (post, messageId, messageUpdate) {
@@ -46,7 +45,7 @@ export default Reflux.createStore({
 		.then((message) => {
 			this.trigger(message)
 		})
-		.catch(this.showError)
+		.catch(Manager.showError)
 	},
 
 	onDeleteMessage (post, messageId) {
@@ -54,11 +53,6 @@ export default Reflux.createStore({
 		.then(() => {
 			this.trigger(true)
 		})
-		.catch(this.showError)
+		.catch(Manager.showError)
 	},
-
-	showError (err) {
-		Manager.showError()
-		// AlertAction.alertError(`There was a problem. ${err}`)
-	}
 })

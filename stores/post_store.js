@@ -4,7 +4,6 @@ import Reflux from 'reflux'
 import PostAPI from '../utils/post'
 
 import PostAction from '../actions/post_action'
-import AlertAction from '../actions/alert_action'
 import Manager from '../../utils/manager'
 
 export default Reflux.createStore({
@@ -21,7 +20,7 @@ export default Reflux.createStore({
   	.then((posts) => {
   		this.trigger(posts)
   	})
-  	.catch(this.showError)
+  	.catch(Manager.showError)
   },
 
   onViewPost (subforum, postId) {
@@ -29,7 +28,7 @@ export default Reflux.createStore({
   	.then((post) => {
   		this.trigger(post)
   	})
-  	.catch(this.showError)
+  	.catch(Manager.showError)
   },
 
   onCreatePost (subforum, newPost) {
@@ -37,7 +36,7 @@ export default Reflux.createStore({
   	.then((post) => {
   		this.trigger(post)
   	})
-  	.catch(this.showError)
+  	.catch(Manager.showError)
   },
 
   onUpdatePost (subforum, postId, postUpdate) {
@@ -45,7 +44,7 @@ export default Reflux.createStore({
   	.then((post) => {
   		this.trigger(post)
   	})
-  	.catch(this.showError)
+  	.catch(Manager.showError)
   },
 
   onDeletePost (subforum, postId) {
@@ -53,11 +52,6 @@ export default Reflux.createStore({
   	.then(() => {
   		this.trigger(true)
   	})
-  	.catch(this.showError)
-  },
-
-  showError (err) {
-    Manager.showError()
-  	// AlertAction.alertError(`There was a problem. ${err}`)
+  	.catch(Manager.showError)
   }
 })

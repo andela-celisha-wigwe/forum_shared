@@ -8,25 +8,13 @@ export default {
     return this.wrapCall(request.get(this.root + path))
   },
   post (path, data) {
-    // const headers = window.localStorage.getItem('currentUser')
-    // ? { Authorization: `Token ${JSON.parse(window.localStorage.getItem('currentUser')).auth_token}` }
-    // : {}
-    const headers = Manager.getItem()
-    return this.wrapCall(request.post(this.root + path, data), headers)
+    return this.wrapCall(request.post(this.root + path, data), Manager.getHeaders())
   },
   del (path) {
-    // const headers = window.localStorage.getItem('currentUser')
-    // ? { Authorization: `Token ${JSON.parse(window.localStorage.getItem('currentUser')).auth_token}` }
-    // : {}
-    const headers = Manager.getItem()
-    return this.wrapCall(request.del(this.root + path), headers)
+    return this.wrapCall(request.del(this.root + path), Manager.getHeaders())
   },
   put (path, data) {
-    // const headers = window.localStorage.getItem('currentUser')
-    // ? { Authorization: `Token ${JSON.parse(window.localStorage.getItem('currentUser')).auth_token}` }
-    // : {}
-    const headers = Manager.getItem()
-    return this.wrapCall(request.put(this.root + path, data), headers)
+    return this.wrapCall(request.put(this.root + path, data), Manager.getHeaders())
   },
   wrapCall (req, headers = {}) {
     return new Promise((resolve, reject) => {
