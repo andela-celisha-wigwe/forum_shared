@@ -1,6 +1,6 @@
 import request from 'superagent'
 import config from '../config'
-import StorageManager from '../storage_manager'
+import StorageManager from '../../utils/storage_manager'
 
 export default {
   root: config.appUrl,
