@@ -1,7 +1,7 @@
 {
 	"development": {
 		// "appUrl": "http://localhost:3000"
-		"appUrl": "http://192.168.100.234:3000"
+		"appUrl": "http://192.168.43.254:3000"
 	},
 	"production": {}
 }

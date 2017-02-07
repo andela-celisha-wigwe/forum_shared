@@ -1,10 +1,12 @@
-'use strict'
+// 'use strict'
 
 import Reflux from 'reflux'
 import MessageAPI from '../utils/message'
 
 import MessageAction from '../actions/message_action'
 import AlertAction from '../actions/alert_action'
+
+import Manager from '../../utils/manager'
 
 export default Reflux.createStore({
 	init () {
@@ -56,6 +58,7 @@ export default Reflux.createStore({
 	},
 
 	showError (err) {
-		AlertAction.alertError(`There was a problem. ${err}`)
+		Manager.showError()
+		// AlertAction.alertError(`There was a problem. ${err}`)
 	}
 })

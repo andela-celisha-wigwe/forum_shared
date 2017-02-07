@@ -5,6 +5,7 @@ import PostAPI from '../utils/post'
 
 import PostAction from '../actions/post_action'
 import AlertAction from '../actions/alert_action'
+import Manager from '../../utils/manager'
 
 export default Reflux.createStore({
   init () {
@@ -56,6 +57,7 @@ export default Reflux.createStore({
   },
 
   showError (err) {
-  	AlertAction.alertError(`There was a problem. ${err}`)
+    Manager.showError()
+  	// AlertAction.alertError(`There was a problem. ${err}`)
   }
 })

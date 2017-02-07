@@ -5,6 +5,7 @@ import Reflux from 'reflux'
 
 import SubforumAction from '../actions/subforum_action'
 import AlertAction from '../actions/alert_action'
+import Manager from '../../utils/manager'
 
 export default Reflux.createStore({
   // On creation
@@ -57,6 +58,7 @@ export default Reflux.createStore({
   },
 
   showError (err) {
-  	AlertAction.alertError(`There was a problem. ${err}`)
+    Manager.showError()
+  	// AlertAction.alertError(`There was a problem. ${err}`)
   }
 })

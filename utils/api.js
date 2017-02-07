@@ -1,6 +1,6 @@
 import request from 'superagent'
 import config from '../config'
-import StorageManager from '../../utils/storage_manager'
+import Manager from '../../utils/manager'
 
 export default {
   root: config.appUrl,
@@ -11,21 +11,21 @@ export default {
     // const headers = window.localStorage.getItem('currentUser')
     // ? { Authorization: `Token ${JSON.parse(window.localStorage.getItem('currentUser')).auth_token}` }
     // : {}
-    const headers = StorageManager.getItem()
+    const headers = Manager.getItem()
     return this.wrapCall(request.post(this.root + path, data), headers)
   },
   del (path) {
     // const headers = window.localStorage.getItem('currentUser')
     // ? { Authorization: `Token ${JSON.parse(window.localStorage.getItem('currentUser')).auth_token}` }
     // : {}
-    const headers = StorageManager.getItem()
+    const headers = Manager.getItem()
     return this.wrapCall(request.del(this.root + path), headers)
   },
   put (path, data) {
     // const headers = window.localStorage.getItem('currentUser')
     // ? { Authorization: `Token ${JSON.parse(window.localStorage.getItem('currentUser')).auth_token}` }
     // : {}
-    const headers = StorageManager.getItem()
+    const headers = Manager.getItem()
     return this.wrapCall(request.put(this.root + path, data), headers)
   },
   wrapCall (req, headers = {}) {
