@@ -4,17 +4,19 @@ import Manager from '../../utils/manager'
 
 export default {
   root: config.appUrl,
-  get (path) {
+  async get (path) {
     return this.wrapCall(request.get(this.root + path))
   },
-  post (path, data) {
-    return this.wrapCall(request.post(this.root + path, data), Manager.getHeaders())
+  async post (path, data) {
+    // return this.wrapCall(request.post(this.root + path, data))
+    console.log(await Manager.getHeaders(), "logging managers")
+    return this.wrapCall(request.post(this.root + path, data), await Manager.getHeaders())
   },
-  del (path) {
-    return this.wrapCall(request.del(this.root + path), Manager.getHeaders())
+  async del (path) {
+    return this.wrapCall(request.del(this.root + path), await Manager.getHeaders())
   },
-  put (path, data) {
-    return this.wrapCall(request.put(this.root + path, data), Manager.getHeaders())
+  async put (path, data) {
+    return this.wrapCall(request.put(this.root + path, data), await Manager.getHeaders())
   },
   wrapCall (req, headers = {}) {
     return new Promise((resolve, reject) => {
@@ -23,6 +25,7 @@ export default {
           req.set(key, headers[key])
         })
       }
+      console.log("checkign the number of requests here")
       req
       .withCredentials(true)
       .end((err, res) => {

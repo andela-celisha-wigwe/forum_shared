@@ -3,19 +3,19 @@ import API from './api.js'
 // Do the same for post and message
 
 export default {
-  all () {
-    return API.get('/subforums')
+  async all () {
+    return await API.get('/subforums')
   },
-  view (id) {
-    return API.get(`/subforums/${id}`)
+  async view (id) {
+    return await API.get(`/subforums/${id}`)
   },
-  update (id, subforumUpdate) {
-    return API.put(`/subforums/${id}`, subforumUpdate)
+  async update (id, subforumUpdate) {
+    return await API.put(`/subforums/${id}`, subforumUpdate)
   },
-  del (id) {
-    return API.del(`/subforums/${id}`)
+  async del (id) {
+    return await API.del(`/subforums/${id}`)
   },
-  create (newSubforum) {
-    return API.post(`/subforums`, newSubforum)
+  async create (newSubforum) {
+    return await API.post(`/subforums`, newSubforum)
   }
 }

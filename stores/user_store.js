@@ -14,19 +14,22 @@ export default Reflux.createStore({
 		this.listenTo(UserAction.checkLogin, this.onCheckLogin)
 	},
 
-	onUserLogin (loginData) {
-		UserAPI.login(loginData)
-		.then((authUser) => {
+	async onUserLogin (loginData) {
+		try {
+			const authUser = await UserAPI.login(loginData)
 			Manager.handleLogin(authUser)
-		})
-		.catch(Manager.showError)
+			this.trigger(authUser)
+		} catch (error) {
+			Manager.showError(error)
+		}
 	},
 
 	onUserLogout () {
 		Manager.handleLogout()
+		this.trigger(false)
 	},
 
-	onUserRegister (registrationData) {
+	async onUserRegister (registrationData) {
 		UserAPI.register(registrationData)
 		.then((newAuthUser) => {
 			Manager.handleLogin(newAuthUser)
@@ -34,7 +37,7 @@ export default Reflux.createStore({
 		.catch(Manager.showError)
 	},
 
-	onCheckLogin () {
-		this.trigger(Manager.checkLogin())
+	async onCheckLogin () {
+		this.trigger( await Manager.checkLogin())
 	}
 })

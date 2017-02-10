@@ -16,43 +16,44 @@ export default Reflux.createStore({
     this.listenTo(SubforumAction.deleteSubforum, this.onDeleteSubforum)
   },
 
-  onListSubforums () {
-  	SubforumAPI.all()
-  	.then((subforums) => {
-  		this.trigger(subforums)
-  	})
-  	.catch(Manager.showError)
+  async onListSubforums () {
+    try {
+      console.log('trying to get a list of all subforums')
+    	this.trigger(await SubforumAPI.all())
+    } catch (error) {
+      Manager.showError (error)
+    }
   },
 
-  onViewSubforum (subforumId) {
-  	SubforumAPI.view(subforumId)
-  	.then((subforum) => {
-  		this.trigger(subforum)
-  	})
-  	.catch(Manager.showError)
+  async onViewSubforum (subforumId) {
+    try {
+      this.trigger(await SubforumAPI.view(subforumId))
+    } catch (error) {
+      Manager.showError (error)
+    }
   },
 
-  onUpdateSubforum (subforumId, subforumUpdate) {
-    SubforumAPI.update(subforumId, subforumUpdate)
-  	.then((subforum) => {
-  		this.trigger(subforum)
-  	})
-  	.catch(Manager.showError)
+  async onUpdateSubforum (subforumId, subforumUpdate) {
+    try {
+      this.trigger(await SubforumAPI.update(subforumId, subforumUpdate))
+    } catch (error) {
+      Manager.showError(error)
+    }
   },
 
-  onCreateSubforum (newSubforum) {
-    SubforumAPI.create(newSubforum)
-  	.then((subforum) => {
-  		this.trigger(subforum)
-  	})
-  	.catch(Manager.showError)
+  async onCreateSubforum (newSubforum) {
+    try {
+      this.trigger(await SubforumAPI.create(newSubforum))
+    } catch (error) {
+      Manager.showError(error)
+    }
   },
 
-  onDeleteSubforum (subforumId) {
-    SubforumAPI.del(subforumId)
-  	.then(() => {
-  		this.trigger(true)
-  	})
-  	.catch(Manager.showError)
+  async onDeleteSubforum (subforumId) {
+    try {
+      this.trigger(await SubforumAPI.del(subforumId))
+    } catch (error) {
+      Manager.showError(error)
+    }
   }
 })

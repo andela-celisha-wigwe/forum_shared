@@ -1,11 +1,11 @@
 import API from './api.js'
 
 export default {
-	login (loginData) {
-		return API.post('/login', loginData)
+	async login (loginData) {
+		return await API.post('/login', loginData)
 	},
 
-	register (registrationData) {
-		return API.post('/register', registrationData)
+	async register (registrationData) {
+		return await API.post('/register', registrationData)
 	}
 }
