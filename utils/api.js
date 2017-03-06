@@ -1,6 +1,7 @@
 import request from 'superagent'
 import config from '../config'
 import Manager from '../../utils/manager'
+console.log(config, "config")
 
 export default {
   root: config.appUrl,
